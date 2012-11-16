@@ -170,7 +170,7 @@ sub _encode {
     } elsif ($ref eq 'JSON::XS::Boolean' || $ref eq 'JSON::PP::Boolean') {
         return _bool($data, $opts);
     } elsif (!$ref) {
-        if (looks_like_number($data) =~ /^(1|4|5|9|12|13|4352|8704)$/o) {
+        if (looks_like_number($data) =~ /^(4|12|4352|8704)$/o) {
             return _number($data, $opts);
         } else {
             return _string($data, $opts);
