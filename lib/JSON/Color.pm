@@ -237,6 +237,13 @@ Show line number.
 =back
 
 
+=head1 FAQ
+
+=head2 What about loading?
+
+Use L<JSON>.
+
+
 =head1 SEE ALSO
 
 To colorize with HTML, you can try L<Syntax::Highlight::JSON>.
