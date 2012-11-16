@@ -1,5 +1,10 @@
 Revision history for JSON-Color
 
+0.02    2012-11-16 (SHARYANTO)
+
+        - Colorize escape code in object key.
+
+
 0.01    2012-11-16 (SHARYANTO)
 
         First release.
