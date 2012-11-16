@@ -1,5 +1,10 @@
 Revision history for JSON-Color
 
+0.03    2012-11-16 (SHARYANTO)
+
+        - Add option 'linum' to include line numbers.
+
+
 0.02    2012-11-16 (SHARYANTO)
 
         - Colorize escape code in object key.
