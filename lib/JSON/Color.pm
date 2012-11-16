@@ -200,6 +200,24 @@ To change the color, see the C<%theme> in the source code. In theory you can
 also modify it to colorize using HTML.
 
 
+=head1 FUNCTIONS
+
+=head2 encode_json($data, \%opts) => STR
+
+Encode to JSON. Will die on error (e.g. when encountering non-encodeable data
+like Regexp or file handle).
+
+Known options:
+
+=over
+
+=item * pretty => BOOL (default: 0)
+
+Pretty-print.
+
+=back
+
+
 =head1 SEE ALSO
 
 To colorize with HTML, you can try L<Syntax::Highlight::JSON>.
