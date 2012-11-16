@@ -32,6 +32,8 @@ our %theme = (
     end_object_key      => RESET,
     start_object_key_escape => BOLD,
     end_object_key_escape   => RESET . MAGENTA, # back to object key
+    start_linum         => REVERSE . WHITE,
+    end_linum           => RESET,
 );
 
 my %esc = (
@@ -168,7 +170,7 @@ sub _encode {
     } elsif ($ref eq 'JSON::XS::Boolean' || $ref eq 'JSON::PP::Boolean') {
         return _bool($data, $opts);
     } elsif (!$ref) {
-        if (looks_like_number($data) =~ /^(1|4|5|9|12|13|4352|8704)$/) {
+        if (looks_like_number($data) =~ /^(1|4|5|9|12|13|4352|8704)$/o) {
             return _number($data, $opts);
         } else {
             return _string($data, $opts);
@@ -182,7 +184,18 @@ sub encode_json {
     my ($value, $opts) = @_;
     $opts //= {};
     $opts->{_indent} //= 0;
-    _encode($value , $opts);
+    my $res = _encode($value , $opts);
+
+    if ($opts->{linum}) {
+        my $lines = 0;
+        $lines++ while $res =~ /^/mog;
+        my $fmt = "%".length($lines)."d";
+        my $i = 0;
+        $res =~ s/^/
+            $theme{start_linum} . sprintf($fmt, ++$i) . $theme{end_linum}
+                /meg;
+    }
+    $res;
 }
 
 1;
@@ -216,6 +229,10 @@ Known options:
 =item * pretty => BOOL (default: 0)
 
 Pretty-print.
+
+=item * linum => BOOL (default: 0)
+
+Show line number.
 
 =back
 
