@@ -1,5 +1,12 @@
 Revision history for JSON-Color
 
+0.06    2014-06-30 (SHARYANTO)
+
+        - Workaround for Scalar::Util 1.39 change to looks_like_number()
+          (booleanize the result). Use (temporary?) replacement
+          Scalar::Util::LooksLikeNumber.
+
+
 0.05    2012-11-22 (SHARYANTO)
 
         - dist: Specify minimum version for Term::ANSIColor (BRIGHT_GREEN etc
