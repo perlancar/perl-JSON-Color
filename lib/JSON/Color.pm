@@ -4,7 +4,7 @@ use 5.010001;
 use strict;
 use warnings;
 
-use Scalar::Util qw(looks_like_number);
+use Scalar::Util::LooksLikeNumber qw(looks_like_number);
 use Term::ANSIColor qw(:constants);
 
 # PUSHCOLOR and LOCALCOLOR cannot be used, they are functions, not escape codes
