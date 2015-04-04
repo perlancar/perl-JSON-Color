@@ -243,6 +243,10 @@ Show line number.
 
 Use L<JSON>.
 
+=head2 How to handle non-encodeable data?
+
+Use L<Data::Clean::JSON>.
+
 
 =head1 SEE ALSO
 
