@@ -1,5 +1,13 @@
 Revision history for JSON-Color
 
+0.08    2015-10-20 (PERLANCAR)
+
+	- No functional changes.
+
+	- Make Scalar::Util::LooksLikeNumber an optional prereq, to avoid
+	  having to depend on a non-core XS module.
+
+
 0.07    2015-04-04 (PERLANCAR)
 
 	- No functional changes.
