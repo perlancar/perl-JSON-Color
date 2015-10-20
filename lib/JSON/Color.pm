@@ -4,7 +4,7 @@ use 5.010001;
 use strict;
 use warnings;
 
-use Scalar::Util::LooksLikeNumber qw(looks_like_number);
+our $sul_available = eval { require Scalar::Util::LooksLikeNumber; 1 } ? 1:0;
 use Term::ANSIColor qw(:constants);
 
 # PUSHCOLOR and LOCALCOLOR cannot be used, they are functions, not escape codes
@@ -170,7 +170,9 @@ sub _encode {
     } elsif ($ref eq 'JSON::XS::Boolean' || $ref eq 'JSON::PP::Boolean') {
         return _bool($data, $opts);
     } elsif (!$ref) {
-        if (looks_like_number($data) =~ /^(4|12|4352|8704)$/o) {
+        if ($sul_available &&
+                Scalar::Util::LooksLikeNumber::looks_like_number($data) =~
+                  /^(4|12|4352|8704)$/o) {
             return _number($data, $opts);
         } else {
             return _string($data, $opts);
