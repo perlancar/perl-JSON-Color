@@ -1,5 +1,12 @@
 Revision history for JSON-Color
 
+0.11    2015-12-23 (PERLANCAR)
+
+	- No functional changes.
+
+	- Add example of sort_by together with Sort::ByExample.
+
+
 0.10    2015-12-23 (PERLANCAR)
 
 	- [Incompatible change] Replace sort_keys option with sort_by,
