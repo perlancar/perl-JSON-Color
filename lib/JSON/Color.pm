@@ -141,8 +141,8 @@ sub _hash {
 
     push @res, "{$nl";
     my @k;
-    if ($opts->{sort_keys}) {
-        @k = $opts->{sort_keys}->($value);
+    if ($opts->{sort_by}) {
+        @k = sort { $opts->{sort_by}->() } keys %$value;
     } else {
         @k = sort keys(%$value);
     }
@@ -241,10 +241,14 @@ Pretty-print.
 
 Show line number.
 
-=item * sort_keys => CODE
+=item * sort_by => CODE
 
-If specified, will invoke this hook when dumping hash to let you custom-sort the
-order of keys. The hook will be called
+If specified, then sorting of hash keys will be done using this sort subroutine.
+This is similar to the C<sort_by> option in the L<JSON> module. Note that code
+is executed in C<JSON::Color> namespace, example:
+
+ # reverse sort
+ sort_by => sub { $JSON::Color::b cmp $JSON::Color::a }
 
 =back
 
