@@ -1,5 +1,11 @@
 Revision history for JSON-Color
 
+0.10    2015-12-23 (PERLANCAR)
+
+	- [Incompatible change] Replace sort_keys option with sort_by,
+	  which is what the JSON module uses.
+
+
 0.09    2015-12-23 (PERLANCAR)
 
 	- Add option: sort_keys.
