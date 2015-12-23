@@ -248,7 +248,12 @@ This is similar to the C<sort_by> option in the L<JSON> module. Note that code
 is executed in C<JSON::Color> namespace, example:
 
  # reverse sort
- sort_by => sub { $JSON::Color::b cmp $JSON::Color::a }
+ encode_json(..., {sort_by => sub { $JSON::Color::b cmp $JSON::Color::a }});
+
+Another example, using L<Sort::ByExample>:
+
+ use Sort::ByExample cmp => {-as => 'by_eg', example => [qw/foo bar baz/]};
+ encode_json(..., {sort_by => sub { by_eg($JSON::Color::a, $JSON::Color::b) }});
 
 =back
 
