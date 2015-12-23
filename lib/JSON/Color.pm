@@ -140,7 +140,12 @@ sub _hash {
     my @res;
 
     push @res, "{$nl";
-    my @k = sort keys(%$value);
+    my @k;
+    if ($opts->{sort_keys}) {
+        @k = $opts->{sort_keys}->($value);
+    } else {
+        @k = sort keys(%$value);
+    }
     local $opts->{_indent} = $opts->{_indent}+1;
     for (0..@k-1) {
         my $k = $k[$_];
@@ -235,6 +240,11 @@ Pretty-print.
 =item * linum => BOOL (default: 0)
 
 Show line number.
+
+=item * sort_keys => CODE
+
+If specified, will invoke this hook when dumping hash to let you custom-sort the
+order of keys. The hook will be called
 
 =back
 
