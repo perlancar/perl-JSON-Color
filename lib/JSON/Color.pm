@@ -268,6 +268,21 @@ Use L<JSON>.
 
 Use L<Data::Clean::JSON>.
 
+=head2 Why do numbers become strings?
+
+Example:
+
+ % perl -MJSON::Color=encode_json -E'say encode_json([1, "1"])'
+ ["1","1"]
+
+To detect whether a scalar is a number (e.g. differentiate between "1" and 1),
+the XS module L<Scalar::Util::LooksLikeNumber> is used. This is set as an
+optional prerequisite, so you'll need to install it separately. After the
+prerequisite is installed:
+
+ % perl -MJSON::Color=encode_json -E'say encode_json([1, "1"])'
+ [1,"1"]
+
 
 =head1 SEE ALSO
 
