@@ -107,10 +107,10 @@ sub _array {
     return join(
         "",
         "[$nl",
-        (map {
+        (map {(
             $indent2,
             _encode($value->[$_], $opts),
-            $_ == @$value-1 ? $nl : ",$nl",
+            $_ == @$value-1 ? $nl : ",$nl",)
         } 0..@$value-1),
         $indent, "]",
     );
