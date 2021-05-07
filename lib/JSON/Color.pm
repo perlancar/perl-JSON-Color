@@ -16,6 +16,7 @@ our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw(encode_json);
 
 use Color::ANSI::Util qw(ansi_reset);
+use ColorThemeRole::ANSI (); # for scan_prereqs
 
 my %esc = (
     "\n" => '\n',
