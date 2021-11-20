@@ -1,13 +1,13 @@
 package JSON::Color;
 
+use 5.010001;
+use strict;
+use warnings;
+
 # AUTHORITY
 # DATE
 # DIST
 # VERSION
-
-use 5.010001;
-use strict;
-use warnings;
 
 our $sul_available = eval { require Scalar::Util::LooksLikeNumber; 1 } ? 1:0;
 
@@ -171,6 +171,9 @@ sub _encode {
         } else {
             return _string($data, $opts);
         }
+    } elsif ($sul_available &&
+             Scalar::Util::blessed($data) && $data->can('TO_JSON')) {
+        return _encode($data->TO_JSON, $opts);
     } else {
         die "Can't encode $data";
     }
