@@ -44,6 +44,8 @@ sub _string {
         $c_e  = $ct->get_item_color_as_ansi('string_escape');
     }
 
+    for ($c_q, $c_s, $c_e) { $_ //= "" }
+
     $value =~ s/([\x22\x5c\n\r\t\f\b])|([\x00-\x08\x0b\x0e-\x1f])/
         join("",
              $c_e,
