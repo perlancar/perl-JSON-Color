@@ -1,12 +1,13 @@
-package JSON::Color::ColorTheme::default_ansi;
+package ColorTheme::JSON::Color::default_ansi;
+
+use strict;
+use parent 'ColorThemeBase::Static::FromStructColors';
+use Term::ANSIColor qw(:constants);
 
 # AUTHORITY
 # DATE
 # DIST
 # VERSION
-
-use parent 'ColorThemeBase::Static::FromStructColors';
-use Term::ANSIColor qw(:constants);
 
 our %THEME = (
     v => 2,

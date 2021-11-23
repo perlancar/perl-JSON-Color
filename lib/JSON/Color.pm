@@ -188,10 +188,13 @@ sub encode_json {
     $opts->{color_theme} //=
         $ENV{JSON_COLOR_COLOR_THEME} //
         $ENV{COLOR_THEME} //
-        "JSON::Color::ColorTheme::default_ansi";
+        "default_ansi";
 
     require Module::Load::Util;
-    my $ct = Module::Load::Util::instantiate_class_with_optional_args($opts->{color_theme});
+    my $ct = Module::Load::Util::instantiate_class_with_optional_args(
+        {ns_prefixes=>["ColorTheme::JSON::Color", "ColorTheme", ""]},
+        $opts->{color_theme},
+    );
     require Role::Tiny;
     Role::Tiny->apply_roles_to_object($ct, 'ColorThemeRole::ANSI');
     $opts->{_color_theme_obj} = $ct;

@@ -1,12 +1,13 @@
-package JSON::Color::ColorTheme::default_rgb;
+package ColorTheme::JSON::Color::default_rgb;
+
+use strict;
+use parent 'ColorThemeBase::Static::FromStructColors';
+use Graphics::ColorNamesLite::WWW;
 
 # AUTHORITY
 # DATE
 # DIST
 # VERSION
-
-use parent 'ColorThemeBase::Static::FromStructColors';
-use Graphics::ColorNamesLite::WWW;
 
 my $t = $Graphics::ColorNamesLite::WWW::NAMES_RGB_TABLE;
 
