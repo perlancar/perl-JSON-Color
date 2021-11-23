@@ -50,15 +50,15 @@ sub _string {
         join("",
              $c_e,
              $1 ? $esc{$1} : '\\u00' . unpack('H2', $2),
-             $c_reset, $c_s,
+             ($c_e ? $c_reset : ""), $c_s,
          )
             /eg;
 
     return join(
         "",
-        $c_q, '"', $c_reset,
-        $c_s, $value, $c_reset,
-        $c_q, '"', $c_reset,
+        $c_q, '"', ($c_q ? $c_reset : ""),
+        $c_s, $value, ($c_s ? $c_reset : ""),
+        $c_q, '"', ($c_q ? $c_reset : ""),
     );
 }
 
