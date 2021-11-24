@@ -192,6 +192,7 @@ sub encode_json {
     $opts //= {};
     $opts->{_indent} //= 0;
     $opts->{color_theme} //=
+        (defined $ENV{NO_COLOR} ? "NoColor" : undef) //
         $ENV{JSON_COLOR_COLOR_THEME} //
         $ENV{COLOR_THEME} //
         "default_ansi";
@@ -304,6 +305,11 @@ prerequisite is installed:
 
 
 =head1 ENVIRONMENT
+
+=head2 NO_COLOR
+
+If defined, will set default color theme to L<ColorTheme::NoColor>. See
+L<https://no-color.org/> for more details.
 
 =head2 JSON_COLOR_COLOR_THEME
 
