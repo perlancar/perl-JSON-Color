@@ -66,11 +66,13 @@ sub _number {
     my ($value, $opts) = @_;
 
     my $ct = $opts->{_color_theme_obj};
+    my $c_reset = ansi_reset(1);
+    my $c_s = $ct->get_item_color_as_ansi('number') // "";
     return join(
         "",
-        $ct->get_item_color_as_ansi('number'),
+        $c_s,
         $value,
-        ansi_reset(1),
+        ($c_s ? $c_reset : ""),
     );
 }
 
@@ -78,11 +80,13 @@ sub _null {
     my ($value, $opts) = @_;
 
     my $ct = $opts->{_color_theme_obj};
+    my $c_reset = ansi_reset(1);
+    my $c_s = $ct->get_item_color_as_ansi('null') // "";
     return join(
         "",
-        $ct->get_item_color_as_ansi('null'),
+        $c_s,
         "null",
-        ansi_reset(1),
+        ($c_s ? $c_reset : ""),
     );
 }
 
@@ -90,11 +94,13 @@ sub _bool {
     my ($value, $opts) = @_;
 
     my $ct = $opts->{_color_theme_obj};
+    my $c_reset = ansi_reset(1);
+    my $c_s = $ct->get_item_color_as_ansi($value ? 'true' : 'false') // "";
     return join(
         "",
-        $ct->get_item_color_as_ansi($value ? 'true' : 'false'),
+        $c_s,
         "$value",
-        ansi_reset(1),
+        ($c_s ? $c_reset : ""),
     );
 }
 
