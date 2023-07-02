@@ -228,6 +228,18 @@ sub encode_json {
  use JSON::Color qw(encode_json);
  say encode_json([1, "two", {three => 4}]);
 
+ # specify some options
+ say encode_json([1, "two", {three => 4}],
+                 {
+                     color_theme=>"bright256", # will be searched under ColorTheme::JSON::Color:: or ColorTheme::
+                 });
+
+ # requires ColorTheme::Lens::Lighten
+ say encode_json([1, "two", {three => 4}],
+                 {
+                     color_theme=>["Lens::Lighten" =>{theme=>"JSON::Color::bright256"}],
+                 });
+
 
 =head1 DESCRIPTION
 
@@ -250,8 +262,11 @@ Known options:
 
 =item * color_theme => STR
 
-Pick a color theme, which is a L<ColorTheme>-confirming color theme module. The
-default is L<JSON::Color::ColorTheme::default>. For example: L<ColorTheme::Lens::Lighten>
+Pick a color theme, which is a L<ColorTheme> color theme module, under the
+following namespaces: C<ColorTheme::JSON::Color::>, C<ColorTheme::>. The default
+is C<default_ansi>, which is the module
+L<ColorTheme::JSON::Color::default_ansi>. See the module source code for an
+example of writing your own color theme module.
 
 =item * pretty => BOOL (default: 0)
 
